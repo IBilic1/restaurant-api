@@ -1,6 +1,6 @@
 package hr.algebra.healthyapp.repository;
 
-import hr.algebra.healthyapp.user.User;
+import hr.algebra.healthyapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
