@@ -1,5 +1,6 @@
 package hr.algebra.healthyapp.auth;
 
+import hr.algebra.healthyapp.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +19,7 @@ public class RegisterRequest {
     private String email;
 
     private String password;
+
+    private Role role;
 
 }

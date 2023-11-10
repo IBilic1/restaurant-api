@@ -1,5 +1,7 @@
-package hr.algebra.healthyapp.user;
+package hr.algebra.healthyapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import hr.algebra.healthyapp.user.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +38,7 @@ public class User implements UserDetails {
     private Role role;
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
