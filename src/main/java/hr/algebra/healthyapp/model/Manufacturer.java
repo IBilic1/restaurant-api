@@ -1,6 +1,9 @@
 package hr.algebra.healthyapp.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
@@ -10,7 +13,7 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Medicine {
+public class Manufacturer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +21,5 @@ public class Medicine {
 
     private String name;
 
-    private String description;
-
-    private Long manufacturerId;
+    private String address;
 }

@@ -1,15 +1,19 @@
 package hr.algebra.healthyapp.model;
 
-//@Data
-//@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Getter
-//@Setter
-//@Entity
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity(name = "order_")
 public class Order {
 
-//    @Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
@@ -17,11 +21,12 @@ public class Order {
     private Double amount;
 
     private Double doseGap;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "id")
+
+    @ManyToOne
+    @JoinColumn(name = "medicineId")
     private Medicine medicine;
-//
-//    @ManyToOne
+
+    @ManyToOne
+    @JoinColumn(name = "prescriptionId", insertable = false, updatable = false)
     private Prescription prescription;
 }

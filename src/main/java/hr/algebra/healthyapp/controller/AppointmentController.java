@@ -1,6 +1,5 @@
 package hr.algebra.healthyapp.controller;
 
-
 import hr.algebra.healthyapp.dto.AppointmentDto;
 import hr.algebra.healthyapp.mapper.AppointmentMapper;
 import hr.algebra.healthyapp.service.AppointmentService;
@@ -25,9 +24,17 @@ public class AppointmentController {
     private AppointmentMapper appointmentMapper;
 
     @GetMapping
-    @Secured({"USER", "ADMIN"})
+    @Secured({"ADMIN"})
     public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctor(Principal principal) {
-        return ResponseEntity.ok(appointmentMapper.destinationToSource(appointmentService.getAppointmentsByDoctor(principal.getName())));
+        return ResponseEntity.ok(appointmentMapper.destinationToSource(
+                appointmentService.getAppointmentsByDoctor(principal.getName())));
+    }
+
+    @GetMapping("/user")
+    @Secured({"USER"})
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByUser(Principal principal) {
+        return ResponseEntity.ok(appointmentMapper.destinationToSource(
+                appointmentService.getAppointmentsByUser(principal.getName())));
     }
 
     @PostMapping

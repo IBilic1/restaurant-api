@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${DATABASE_USER}
+    url: ${DATABASE_URL}
+    password: ${DATABASE_PASS}
+  jpa:
+    properties:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        format_sql: 'true'
+      database: postgresql
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: 'true'
+application:
+  security:
+    expiration: '84600000'
+    secretKey: dUJvTlpIWlAwb3JqeWk4YnRuTHd5cVFXVW1uaW5XS0hGeWUrOXRPYTdjWT0=
+    refreshToken:
+      expiration: '604800000'
