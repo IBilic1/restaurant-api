@@ -1,24 +1,33 @@
 package hr.algebra.healthyapp.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.List;
 
-//@Data
-//@Builder
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Getter
-//@Setter
-//@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Prescription {
 
 
-//    @Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "patientId")
     private User patient;
-//
-//    @OneToMany(mappedBy = "prescription")
-    private List<Order> order;
+
+    @ManyToOne
+    @JoinColumn(name = "doctorId")
+    private User doctor;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "prescriptionId")
+    private List<Order> orders;
 }
