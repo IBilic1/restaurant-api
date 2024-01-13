@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface MedicineRepository {
 
-    void saveMedicine(Medicine medicine);
+    Long saveMedicine(Medicine medicine);
 
     void deleteMedicine(Long medicineId);
 

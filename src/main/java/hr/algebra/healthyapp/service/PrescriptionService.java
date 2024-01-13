@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface PrescriptionService {
 
-    void savePrescription(Prescription prescription, String name);
+    Prescription savePrescription(Prescription prescription, String name);
 
     void deletePrescription(Long prescription);
 

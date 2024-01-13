@@ -27,7 +27,7 @@ public class Prescription {
     @JoinColumn(name = "doctorId")
     private User doctor;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "prescriptionId")
     private List<Order> orders;
 }
