@@ -32,7 +32,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription savePrescription(Prescription prescription, String name) {
         String patientEmail = prescription.getPatient().getEmail();
-        String doctorEmail = prescription.getDoctor().getEmail();
+        String doctorEmail = name;
         Optional<User> oPatient = userRepository.findByEmail(patientEmail);
         Optional<User> oDoctor = userRepository.findByEmail(doctorEmail);
 

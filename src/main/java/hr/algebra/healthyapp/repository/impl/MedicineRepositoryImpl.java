@@ -56,10 +56,10 @@ public class MedicineRepositoryImpl implements MedicineRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         MapSqlParameterSource parameters = new MapSqlParameterSource( createMap(medicine));
         if (medicine.getId() == null) {
-            namedParameterJdbcTemplate.update(saveMedicineSql, parameters, keyHolder, new String[]{"ID"});
+            namedParameterJdbcTemplate.update(saveMedicineSql, parameters, keyHolder, new String[]{"id"});
             return keyHolder.getKey().longValue();
         } else {
-            namedParameterJdbcTemplate.update(updateMedicineSql, parameters, keyHolder, new String[]{"ID"});
+            namedParameterJdbcTemplate.update(updateMedicineSql, parameters, keyHolder, new String[]{"id"});
             return keyHolder.getKey().longValue();
         }
     }

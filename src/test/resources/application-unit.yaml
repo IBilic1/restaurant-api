@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:data.sql'
+    url: jdbc:h2:mem:test;INIT=runscript from './support/data.sql'
   h2:
     console.enabled: true
   jpa:
