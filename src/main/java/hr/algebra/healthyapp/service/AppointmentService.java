@@ -13,7 +13,5 @@ public interface AppointmentService {
 
     Optional<Appointment> getAppointment(Long id);
 
-    List<Appointment> getAppointmentsByDoctor(String username);
-
     List<Appointment> getAppointmentsByUser(String username);
 }

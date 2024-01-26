@@ -16,4 +16,6 @@ public interface MedicineRepository {
     List<Medicine> getAllMedicine();
 
     List<Medicine> getMedicineByManufacturer(Long manufacturerId);
+
+    void batchUpdateMedicine(List<Medicine> medicines);
 }

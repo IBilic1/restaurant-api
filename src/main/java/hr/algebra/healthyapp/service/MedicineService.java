@@ -14,4 +14,6 @@ public interface MedicineService {
     Optional<Medicine> getMedicine(Long id);
 
     List<Medicine> getAllMedicines();
+
+    void batchUpdateMedicine(List<Medicine> medicines);
 }

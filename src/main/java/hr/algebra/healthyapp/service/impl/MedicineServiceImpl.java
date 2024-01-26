@@ -38,4 +38,9 @@ public class MedicineServiceImpl implements MedicineService {
     public List<Medicine> getAllMedicines() {
         return medicineRepository.getAllMedicine();
     }
+
+    @Override
+    public void batchUpdateMedicine(List<Medicine> medicines) {
+        medicineRepository.batchUpdateMedicine(medicines);
+    }
 }

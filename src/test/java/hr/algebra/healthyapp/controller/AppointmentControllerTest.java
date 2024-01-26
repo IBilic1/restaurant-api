@@ -52,7 +52,7 @@ class AppointmentControllerTest {
     void testGetAppointmentsByDoctor() throws Exception {
         Principal mockPrincipal = Mockito.mock(Principal.class);
         Mockito.when(mockPrincipal.getName()).thenReturn("me");
-        when(appointmentService.getAppointmentsByDoctor(anyString())).thenReturn(Collections.emptyList());
+        when(appointmentService.getAppointmentsByUser(anyString())).thenReturn(Collections.emptyList());
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/api/v1/appointment")
@@ -63,7 +63,7 @@ class AppointmentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-        verify(appointmentService, times(1)).getAppointmentsByDoctor(anyString());
+        verify(appointmentService, times(1)).getAppointmentsByUser(anyString());
     }
 
     @Test

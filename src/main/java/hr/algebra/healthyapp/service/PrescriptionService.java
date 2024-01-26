@@ -13,7 +13,5 @@ public interface PrescriptionService {
 
     Optional<Prescription> getPrescription(Long id);
 
-    List<Prescription> getPrescriptionsByDoctor(String username);
-
     List<Prescription> getPrescriptionsByUser(String username);
 }

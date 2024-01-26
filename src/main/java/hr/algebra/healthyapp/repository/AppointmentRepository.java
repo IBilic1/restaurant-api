@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
-    List<Appointment> findAllByPatientId(Integer patientId);
+    List<Appointment> findAllByPatientIdOrDoctorId(Integer patientId, Integer doctorId);
 
-    List<Appointment> findAllByDoctorId(Integer doctorId);
 }

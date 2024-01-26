@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: user
-    url: jdbc:postgresql://localhost:5432/healthcent
-    password: Pa$$wOrd
+    username: ivana
+    url: jdbc:postgresql://localhost:5432/healthapp
+    password: ivana
   jpa:
     properties:
       database-platform: org.hibernate.dialect.PostgreSQLDialect

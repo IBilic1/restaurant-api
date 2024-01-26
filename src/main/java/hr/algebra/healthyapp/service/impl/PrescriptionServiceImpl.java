@@ -60,16 +60,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> getPrescriptionsByDoctor(String username) {
-        User doctor = userRepository.findByEmail(username).orElseThrow(()->
-                new EntityDoesNotExistsException("Doctor with username %s does not exists", username));
-        return prescriptionRepository.findByDoctorId(doctor.getId());
-    }
-
-    @Override
     public List<Prescription> getPrescriptionsByUser(String username) {
-        User user = userRepository.findByEmail(username).orElseThrow(()->
+        User user = userRepository.findByEmail(username).orElseThrow(() ->
                 new EntityDoesNotExistsException("Patient with username %s does not exists", username));
-        return prescriptionRepository.findByPatientId(user.getId());
+        return prescriptionRepository.findByPatientIdOrDoctorId(user.getId(), user.getId());
     }
 }

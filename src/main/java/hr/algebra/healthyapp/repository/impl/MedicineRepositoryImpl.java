@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class MedicineRepositoryImpl implements MedicineRepository {
@@ -62,6 +63,12 @@ public class MedicineRepositoryImpl implements MedicineRepository {
             namedParameterJdbcTemplate.update(updateMedicineSql, parameters, keyHolder, new String[]{"id"});
             return keyHolder.getKey().longValue();
         }
+    }
+
+    @Override
+    public void batchUpdateMedicine(List<Medicine> medicines) {
+        List<MapSqlParameterSource> parameters = medicines.stream().map(medicine -> new MapSqlParameterSource(createMap(medicine))).collect(Collectors.toList());
+        namedParameterJdbcTemplate.batchUpdate(updateMedicineSql, parameters.toArray(new SqlParameterSource[parameters.size()]));
     }
 
     @Override

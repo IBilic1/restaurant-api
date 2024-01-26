@@ -98,7 +98,7 @@ class AppointmentServiceTest {
         appointmentService.deleteAppointment(appointmentId);
 
         // Assert
-        assertFalse(appointmentService.getAppointmentsByDoctor(appointment.getDoctor().getEmail()).contains(appointment));
+        assertFalse(appointmentService.getAppointmentsByUser(appointment.getDoctor().getEmail()).contains(appointment));
     }
 
     @Test
@@ -118,7 +118,7 @@ class AppointmentServiceTest {
     @Test
     void getAppointmentsByDoctor_shouldReturnListOfAppointments() {
         // Act
-        List<Appointment> result = appointmentService.getAppointmentsByDoctor(doctor.getEmail());
+        List<Appointment> result = appointmentService.getAppointmentsByUser(doctor.getEmail());
 
         // Assert
         assertEquals(3, result.size());
