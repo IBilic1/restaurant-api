@@ -21,4 +21,7 @@ public class Medicine {
     private String description;
 
     private Long manufacturerId;
+
+    @Builder.Default
+    private Double quantityInStock = 0D;
 }

@@ -1,3 +1,7 @@
+job:
+  cron:
+    calculateQuantityInStock: '*/15 * * * * *'
+
 jdbc:
   medicine:
     createMedicine: >

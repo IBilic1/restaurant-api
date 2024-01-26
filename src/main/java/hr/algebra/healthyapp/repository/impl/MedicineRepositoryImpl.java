@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -17,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class MedicineRepositoryImpl implements MedicineRepository {
@@ -50,12 +53,22 @@ public class MedicineRepositoryImpl implements MedicineRepository {
     }
 
     @Override
-    public void saveMedicine(Medicine medicine) {
+    public Long saveMedicine(Medicine medicine) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource parameters = new MapSqlParameterSource( createMap(medicine));
         if (medicine.getId() == null) {
-            namedParameterJdbcTemplate.execute(saveMedicineSql, createMap(medicine), PreparedStatement::executeUpdate);
+            namedParameterJdbcTemplate.update(saveMedicineSql, parameters, keyHolder, new String[]{"id"});
+            return keyHolder.getKey().longValue();
         } else {
-            namedParameterJdbcTemplate.execute(updateMedicineSql, createMap(medicine), PreparedStatement::executeUpdate);
+            namedParameterJdbcTemplate.update(updateMedicineSql, parameters, keyHolder, new String[]{"id"});
+            return keyHolder.getKey().longValue();
         }
+    }
+
+    @Override
+    public void batchUpdateMedicine(List<Medicine> medicines) {
+        List<MapSqlParameterSource> parameters = medicines.stream().map(medicine -> new MapSqlParameterSource(createMap(medicine))).collect(Collectors.toList());
+        namedParameterJdbcTemplate.batchUpdate(updateMedicineSql, parameters.toArray(new SqlParameterSource[parameters.size()]));
     }
 
     @Override

@@ -30,9 +30,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public void savePrescription(Prescription prescription, String name) {
+    public Prescription savePrescription(Prescription prescription, String name) {
         String patientEmail = prescription.getPatient().getEmail();
-        String doctorEmail = prescription.getDoctor().getEmail();
+        String doctorEmail = name;
         Optional<User> oPatient = userRepository.findByEmail(patientEmail);
         Optional<User> oDoctor = userRepository.findByEmail(doctorEmail);
 
@@ -46,7 +46,7 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         User patient = oPatient.get();
         prescription.setDoctor(doctor);
         prescription.setPatient(patient);
-        prescriptionRepository.save(prescription);
+        return prescriptionRepository.save(prescription);
     }
 
     @Override
@@ -60,16 +60,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    public List<Prescription> getPrescriptionsByDoctor(String username) {
-        User doctor = userRepository.findByEmail(username).orElseThrow(()->
-                new EntityDoesNotExistsException("Doctor with username %s does not exists", username));
-        return prescriptionRepository.findByDoctorId(doctor.getId());
-    }
-
-    @Override
     public List<Prescription> getPrescriptionsByUser(String username) {
-        User user = userRepository.findByEmail(username).orElseThrow(()->
+        User user = userRepository.findByEmail(username).orElseThrow(() ->
                 new EntityDoesNotExistsException("Patient with username %s does not exists", username));
-        return prescriptionRepository.findByPatientId(user.getId());
+        return prescriptionRepository.findByPatientIdOrDoctorId(user.getId(), user.getId());
     }
 }

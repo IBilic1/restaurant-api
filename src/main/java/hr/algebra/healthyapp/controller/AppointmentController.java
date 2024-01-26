@@ -24,14 +24,6 @@ public class AppointmentController {
     private AppointmentMapper appointmentMapper;
 
     @GetMapping
-    @Secured({"ADMIN"})
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctor(Principal principal) {
-        return ResponseEntity.ok(appointmentMapper.destinationToSource(
-                appointmentService.getAppointmentsByDoctor(principal.getName())));
-    }
-
-    @GetMapping("/user")
-    @Secured({"USER"})
     public ResponseEntity<List<AppointmentDto>> getAppointmentsByUser(Principal principal) {
         return ResponseEntity.ok(appointmentMapper.destinationToSource(
                 appointmentService.getAppointmentsByUser(principal.getName())));

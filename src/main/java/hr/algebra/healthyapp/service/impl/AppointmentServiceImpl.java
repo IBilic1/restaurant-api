@@ -6,6 +6,7 @@ import hr.algebra.healthyapp.model.User;
 import hr.algebra.healthyapp.repository.AppointmentRepository;
 import hr.algebra.healthyapp.repository.UserRepository;
 import hr.algebra.healthyapp.service.AppointmentService;
+import hr.algebra.healthyapp.user.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,16 +45,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<Appointment> getAppointmentsByDoctor(String username) {
-        User doctor = userRepository.findByEmail(username).orElseThrow(() ->
-                new EntityDoesNotExistsException("Doctor with username %s does not exists", username));
-        return appointmentRepository.findAllByDoctorId(doctor.getId());
-    }
-
-    @Override
     public List<Appointment> getAppointmentsByUser(String username) {
-        User patient = userRepository.findByEmail(username).orElseThrow(() ->
-                new EntityDoesNotExistsException("Patient with username %s does not exists", username));
-        return appointmentRepository.findAllByPatientId(patient.getId());
+        User user = userRepository.findByEmail(username).orElseThrow(() ->
+                new EntityDoesNotExistsException("Doctor with username %s does not exists", username));
+        return appointmentRepository.findAllByPatientIdOrDoctorId(user.getId(), user.getId());
     }
 }

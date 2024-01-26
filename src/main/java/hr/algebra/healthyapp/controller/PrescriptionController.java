@@ -28,15 +28,7 @@ public class PrescriptionController {
     }
 
     @GetMapping
-    @Secured({"ADMIN"})
     public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByDoctor(Principal principal) {
-        return ResponseEntity.ok(prescriptionMapper.destinationToSource(
-                prescriptionService.getPrescriptionsByDoctor(principal.getName())));
-    }
-
-    @GetMapping("/user")
-    @Secured({"USER"})
-    public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByUser(Principal principal) {
         return ResponseEntity.ok(prescriptionMapper.destinationToSource(
                 prescriptionService.getPrescriptionsByUser(principal.getName())));
     }
