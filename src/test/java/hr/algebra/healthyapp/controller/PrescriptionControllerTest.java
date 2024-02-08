@@ -1,7 +1,6 @@
 package hr.algebra.healthyapp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hr.algebra.healthyapp.dto.AppointmentDto;
 import hr.algebra.healthyapp.dto.PrescriptionDto;
 import hr.algebra.healthyapp.mapper.PrescriptionMapper;
 import hr.algebra.healthyapp.service.PrescriptionService;
@@ -55,7 +54,7 @@ public class PrescriptionControllerTest {
     void testGetPrescriptionsByDoctor() throws Exception {
         Principal mockPrincipal = Mockito.mock(Principal.class);
         Mockito.when(mockPrincipal.getName()).thenReturn("me");
-        when(prescriptionService.getPrescriptionsByDoctor(anyString())).thenReturn(Collections.emptyList());
+        when(prescriptionService.getPrescriptionsByUser(anyString())).thenReturn(Collections.emptyList());
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/prescription")
@@ -66,7 +65,7 @@ public class PrescriptionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
 
-        verify(prescriptionService, times(1)).getPrescriptionsByDoctor(anyString());
+        verify(prescriptionService, times(1)).getPrescriptionsByUser(anyString());
     }
 
     @Test

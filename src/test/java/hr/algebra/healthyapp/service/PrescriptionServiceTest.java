@@ -114,7 +114,7 @@ public class PrescriptionServiceTest {
         prescriptionService.deletePrescription(prescription.getId());
 
         // Assert
-        assertFalse(prescriptionService.getPrescriptionsByDoctor(prescription.getDoctor().getEmail()).contains(prescription));
+        assertFalse(prescriptionService.getPrescriptionsByUser(prescription.getDoctor().getEmail()).contains(prescription));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class PrescriptionServiceTest {
     @Test
     void getPrescriptionByDoctor_shouldReturnListOfPrescription() {
         // Act
-        List<Prescription> result = prescriptionService.getPrescriptionsByDoctor(doctor.getEmail());
+        List<Prescription> result = prescriptionService.getPrescriptionsByUser(doctor.getEmail());
 
         // Assert
         assertEquals(3, result.size());

@@ -39,6 +39,7 @@ CREATE TABLE Medicine
     name           VARCHAR(255),
     description    VARCHAR(255),
     manufacturer_id BIGINT,
+    quantity_in_stock FLOAT,
     FOREIGN KEY (manufacturer_id) REFERENCES Manufacturer (id)
 );
 
