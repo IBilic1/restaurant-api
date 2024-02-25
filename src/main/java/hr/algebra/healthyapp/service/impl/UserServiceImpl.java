@@ -1,9 +1,9 @@
 package hr.algebra.healthyapp.service.impl;
 
+import hr.algebra.healthyapp.model.User;
 import hr.algebra.healthyapp.repository.UserRepository;
 import hr.algebra.healthyapp.service.UserService;
 import hr.algebra.healthyapp.user.Role;
-import hr.algebra.healthyapp.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllPatient() {
-        return userRepository.findAll().stream().filter((patinent) ->patinent.getRole() == Role.USER).collect(Collectors.toList());
+        return userRepository.findAll().stream().filter((user) -> user.getRole() == Role.USER).collect(Collectors.toList());
     }
 }

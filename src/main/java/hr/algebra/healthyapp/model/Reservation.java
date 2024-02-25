@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
@@ -13,13 +12,13 @@ import java.util.List;
 @Getter
 @Setter
 @Document
-public class Order {
+public class Reservation {
 
     private String id;
 
-    private User orderBy;
+    private User reservedBy;
 
-    private List<Dish> dishes;
+    private LocalDateTime reservationTime;
 
-    private LocalDateTime orderTime;
+    private Desk desk;
 }

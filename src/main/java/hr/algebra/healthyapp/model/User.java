@@ -2,11 +2,13 @@ package hr.algebra.healthyapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hr.algebra.healthyapp.user.Role;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,13 +20,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "_user")
+@Document
 public class User implements UserDetails {
 
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
+
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
     private String firstName;
 
@@ -34,7 +37,6 @@ public class User implements UserDetails {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override

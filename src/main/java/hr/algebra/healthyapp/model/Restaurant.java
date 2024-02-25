@@ -1,9 +1,9 @@
 package hr.algebra.healthyapp.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -13,13 +13,14 @@ import java.util.List;
 @Getter
 @Setter
 @Document
-public class Order {
+public class Restaurant {
 
+    @Id
     private String id;
 
-    private User orderBy;
+    private String name;
 
-    private List<Dish> dishes;
+    private User owner;
 
-    private LocalDateTime orderTime;
+    private List<Desk> desks;
 }

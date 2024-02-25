@@ -1,26 +1,20 @@
 package hr.algebra.healthyapp.dto;
 
-import hr.algebra.healthyapp.model.Dish;
 import hr.algebra.healthyapp.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDto {
+public class RestaurantDto {
 
     private Long id;
 
-    private User orderBy;
+    private String name;
 
-    private List<Dish> dishes;
-
-    private LocalDateTime orderTime;
+    private User owner;
 }

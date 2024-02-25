@@ -2,9 +2,8 @@ package hr.algebra.healthyapp.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.algebra.healthyapp.config.JwtService;
-import hr.algebra.healthyapp.repository.UserRepository;
-import hr.algebra.healthyapp.user.Role;
 import hr.algebra.healthyapp.model.User;
+import hr.algebra.healthyapp.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -14,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.naming.AuthenticationException;
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,8 +29,7 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
-
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws AuthenticationException {
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -37,6 +37,10 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
+        Optional<User> userByEmail = userRepository.findByEmail(user.getEmail());
+        if (userByEmail.isPresent()) {
+            throw new AuthenticationException("User already exists");
+        }
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToke(user);

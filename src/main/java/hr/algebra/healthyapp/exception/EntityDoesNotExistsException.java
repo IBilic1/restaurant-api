@@ -6,4 +6,8 @@ public class EntityDoesNotExistsException extends RuntimeException {
     public EntityDoesNotExistsException(String message, String username) {
         super(String.format(message, username));
     }
+
+    public EntityDoesNotExistsException() {
+        super("Entity does not exists");
+    }
 }

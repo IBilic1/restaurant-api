@@ -4,15 +4,12 @@ import hr.algebra.healthyapp.dto.OrderDto;
 import hr.algebra.healthyapp.model.Order;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-        uses = {MedicineMapper.class})
+        uses = {UserMapper.class, DishMapper.class})
 public interface OrderMapper {
-
-    OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
     OrderDto sourceToDestination(Order source);
 

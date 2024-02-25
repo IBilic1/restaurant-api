@@ -3,9 +3,6 @@ package hr.algebra.healthyapp.model;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -13,13 +10,11 @@ import java.util.List;
 @Getter
 @Setter
 @Document
-public class Order {
+public class Desk {
 
     private String id;
 
-    private User orderBy;
+    private Restaurant restaurant;
 
-    private List<Dish> dishes;
-
-    private LocalDateTime orderTime;
+    private Integer size;
 }

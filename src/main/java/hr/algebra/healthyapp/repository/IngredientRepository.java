@@ -1,9 +1,9 @@
 package hr.algebra.healthyapp.repository;
 
-import hr.algebra.healthyapp.model.Order;
+import hr.algebra.healthyapp.model.Ingredient;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends MongoRepository<Order, String> {
+public interface IngredientRepository extends MongoRepository<Ingredient, String> {
 }
