@@ -26,8 +26,8 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderDto>> getOrders() {
-        return ResponseEntity.ok(orderMapper.destinationToSource(orderService.getAllOrders()));
+    public ResponseEntity<List<OrderDto>> getOrders(Principal principal) {
+        return ResponseEntity.ok(orderMapper.destinationToSource(orderService.getAllOrders(principal.getName())));
     }
 
 

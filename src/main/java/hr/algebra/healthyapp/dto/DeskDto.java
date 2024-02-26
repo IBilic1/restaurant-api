@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class DeskDto {
 
-    private Long id;
+    private String id;
 
     private RestaurantDto restaurant;
 

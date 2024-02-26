@@ -30,8 +30,10 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+    public List<Reservation> getAllReservations(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() ->
+                new EntityDoesNotExistsException("Owner with username %s does not exists", username));
+        return reservationRepository.findAllByReservedBy_Id(user.getId());
     }
 
     @Override

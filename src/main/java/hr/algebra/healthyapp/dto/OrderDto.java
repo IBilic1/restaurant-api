@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderDto {
 
-    private Long id;
+    private String id;
 
     private User orderBy;
 

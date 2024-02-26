@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ReservationService {
 
-    List<Reservation> getAllReservations();
+    List<Reservation> getAllReservations(String username);
 
     Reservation reservation(Reservation reservation, String username);
 

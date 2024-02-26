@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Data
 @Builder
@@ -21,6 +20,4 @@ public class Restaurant {
     private String name;
 
     private User owner;
-
-    private List<Desk> desks;
 }

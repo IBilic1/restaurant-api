@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReservationDto {
 
-    private Long id;
+    private String id;
 
     private User reservedBy;
 

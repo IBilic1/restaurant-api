@@ -32,8 +32,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public List<Order> getAllOrders(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() ->
+                new EntityDoesNotExistsException("Owner with username %s does not exists", username));
+        return orderRepository.findAllByOrderBy_Id(username);
     }
 
     @Override

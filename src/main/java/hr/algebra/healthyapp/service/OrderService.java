@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface OrderService {
 
-    List<Order> getAllOrders();
+    List<Order> getAllOrders(String username);
 
     Order saveOrder(Order order, String username);
 

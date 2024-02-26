@@ -28,8 +28,8 @@ public class ReservationController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ReservationDto>> getReservations() {
-        return ResponseEntity.ok(reservationMapper.destinationToSource(reservationService.getAllReservations()));
+    public ResponseEntity<List<ReservationDto>> getReservations(Principal principal) {
+        return ResponseEntity.ok(reservationMapper.destinationToSource(reservationService.getAllReservations(principal.getName())));
     }
 
 

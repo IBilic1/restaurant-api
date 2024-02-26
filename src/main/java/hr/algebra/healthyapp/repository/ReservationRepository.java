@@ -10,4 +10,7 @@ import java.util.List;
 public interface ReservationRepository extends MongoRepository<Reservation, String> {
 
     List<Reservation> findReservationsByDesk_Id(String deskId);
+
+    List<Reservation> findAllByReservedBy_Id(String id);
+
 }
